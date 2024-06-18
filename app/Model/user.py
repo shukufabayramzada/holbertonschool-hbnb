@@ -1,4 +1,4 @@
-from .baseclass import BaseClass
+from baseclass import BaseClass
 # from ..persistence.data_manager import DataManager
 
 class User(BaseClass):

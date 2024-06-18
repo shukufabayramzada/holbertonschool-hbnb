@@ -1,4 +1,4 @@
-from .baseclass import BaseClass
+from baseclass import BaseClass
 
 
 class Place(BaseClass):
