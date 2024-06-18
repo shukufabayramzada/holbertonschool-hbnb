@@ -25,7 +25,7 @@ class Place(Baseclass):
             i = self.amenities.index(past_ame)
             self.amenities[i] = new_ame
         else:
-            raise ValueError(f"{past_amenity} not found")
+            raise ValueError(f"{past_ame} not found")
     
     def remove_amenity(self, amenity):
         self.amenities.remove(amenity)
