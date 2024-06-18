@@ -1,6 +1,7 @@
-from .baseclass import Baseclass
 
-class Amenities(Baseclass):
+from baseclass import BaseClass
+
+class Amenities(BaseClass):
     
     def __init__(self, name, description, id, created_at, updated_at):
         super.__init__(id, created_at, updated_at)
@@ -12,4 +13,7 @@ class Amenities(Baseclass):
         
     def remove_place(self, place):
         self.places.remove(place)
+        
+    def __str__(self):
+        return "Your ID is" + str(self.name)
         

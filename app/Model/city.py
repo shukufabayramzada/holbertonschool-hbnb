@@ -1,6 +1,6 @@
-from .baseclass import Baseclass
+from .baseclass import BaseClass
 
-class City(Baseclass):
+class City(BaseClass):
     
     def __init__(self, id, created_at, updated_at, name, country_id):
         super.__init__(id, created_at, updated_at)

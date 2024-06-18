@@ -1,7 +1,7 @@
-from .baseclass import Baseclass
+from .baseclass import BaseClass
 
 
-class Place(Baseclass):
+class Place(BaseClass):
     def __init__(self, id, created_at, updated_at, name, description, adress, latitude, longitude, host, number_of_rooms, bath_rooms, price_per_night, max_guests, amenities, reviews):
         super.__init__(id, created_at, updated_at)
         self.name = name

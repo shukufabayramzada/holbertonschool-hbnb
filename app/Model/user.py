@@ -1,7 +1,7 @@
-from .baseclass import Baseclass
+from .baseclass import BaseClass
 # from ..persistence.data_manager import DataManager
 
-class User(Baseclass):
+class User(BaseClass):
     
     users = []
     

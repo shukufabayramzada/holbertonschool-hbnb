@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-class Baseclass:
+class BaseClass:
     def __init__(self):
         self.id = str(uuid.uuid4())
         self.created_at = str(datetime.now())
