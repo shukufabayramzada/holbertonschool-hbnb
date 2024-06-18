@@ -1,5 +1,4 @@
 from baseclass import BaseClass
-# from ..persistence.data_manager import DataManager
 
 class User(BaseClass):
     
@@ -15,5 +14,4 @@ class User(BaseClass):
     def user_check(user_instance):
         if user_instance not in User.users:
             User.users.append(user_instance)
-        
         
