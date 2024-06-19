@@ -9,5 +9,3 @@ class BaseClass:
 
     def save(self):
         self.updated_at = datetime.now()
-
-# maybe string representation can be added by Shukufa
