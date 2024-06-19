@@ -1,5 +1,5 @@
 from baseclass import BaseClass
-from  Persistence.data_manager import DataManager
+from Persistence.data_manager import DataManager
 
 class User(BaseClass):
     

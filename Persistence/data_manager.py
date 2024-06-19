@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from .Ipersistence import IPersistenceManager
+from IPersistence import IPersistenceManager
 import json
 import os
 
