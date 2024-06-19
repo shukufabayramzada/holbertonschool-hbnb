@@ -1,16 +1,16 @@
-from baseclass import BaseClass
+from Model.baseclass import BaseClass
 
 
 class Place(BaseClass):
-    def __init__(self, id, created_at, updated_at, name, description, adress, latitude, longitude, host, number_of_rooms, bath_rooms, price_per_night, max_guests, amenities, reviews):
-        super.__init__(id, created_at, updated_at)
+    def __init__(self, id, created_at, updated_at, name, description, address, latitude, longitude, host, number_of_rooms, bath_rooms, price_per_night, max_guests, amenities, reviews):
+        super().__init__()
         self.name = name
         self.description = description
-        self.adress = adress
+        self.address = address
         self.latitude = latitude
         self.longitude = longitude
         self.host = host
-        self.number_of_room = number_of_rooms
+        self.number_of_rooms = number_of_rooms
         self.bath_rooms = bath_rooms
         self.price_per_night = price_per_night
         self.max_guests = max_guests
@@ -37,3 +37,9 @@ class Place(BaseClass):
     
     def delete_host(self):
         self.host = None
+        
+    def delete(self):
+        self.host = None
+        self.amenities = []
+        self.reviews = []
+        print(f"Place {self.name} has been deleted")
