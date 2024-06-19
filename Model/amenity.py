@@ -1,5 +1,5 @@
 
-from baseclass import BaseClass
+from Model.baseclass import BaseClass
 
 class Amenities(BaseClass):
     
