@@ -1,9 +1,9 @@
-from baseclass import BaseClass
+from Model.baseclass import BaseClass
 
 class City(BaseClass):
     
     def __init__(self, id, created_at, updated_at, name, country_id):
-        super.__init__(id, created_at, updated_at)
+        super().__init__()
         self.name = name
         self.country_id = country_id
     
