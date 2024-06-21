@@ -5,7 +5,7 @@ from Persistence.data_manager import DataManager
 amenity_controller = Blueprint('amenity_controller', __name__)
 data_manager = DataManager()
 
-@amenity_controller.route('/amenities', method=['POST'])
+@amenity_controller.route('/amenities', methods=['POST'])
 def post_amenity():
     data = request.get_json()
     amenity = Amenities(name=data['name'], description=data['description'])
@@ -17,7 +17,7 @@ def get_amenities():
     users = data_manager.get_all('Amenities')
     return jsonify(users), 200
 
-@amenity_controller.route('/amenities/<amenity.id>', methods=['GET'])
+@amenity_controller.route('/amenities/<amenity_id>', methods=['GET'])
 def get_amenity(amenity_id):
     amenity = data_manager.get(entity_id=amenity_id, entity_type= 'Amenities')
     if amenity is None:
@@ -36,7 +36,7 @@ def update_amenity(amenity_id):
     
     updated_amenity = Amenities(name=updated_name, description=update_description)
     updated_amenity.id = amenity_id
-    data_manager.update(update_amenity)
+    data_manager.update(updated_amenity)
     return jsonify(update_amenity.__dict__), 200
 
 @amenity_controller.route('/amenities/<amenity_id>', method=['DELETE'])
