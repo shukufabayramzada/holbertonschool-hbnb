@@ -24,7 +24,7 @@ def get_amenity(amenity_id):
         return jsonify({"error": "Amenity not found"}), 404
     return jsonify(amenity), 200
 
-@amenity_controller.route('/amenities/<amenity.id>', methods=['PUT'])
+@amenity_controller.route('/amenities/<amenity_id>', methods=['PUT'])
 def update_amenity(amenity_id):
     data = request.get_json()
     existing_amenity = data_manager.get(entity_id=amenity_id, entity_type='Amenities')

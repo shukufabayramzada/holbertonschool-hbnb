@@ -1,4 +1,9 @@
 from flask import Flask
+from Api.amenity_controller import amenity_controller
+
+app = Flask(__name__)
+
+app.register_blueprint(amenity_controller)
 
 app = Flask(__name__)
 
