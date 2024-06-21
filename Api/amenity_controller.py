@@ -1,0 +1,48 @@
+from flask import Blueprint, jsonify, request
+from Model.amenity import Amenities 
+from Persistence.data_manager import DataManager
+
+amenity_controller = Blueprint('amenity_controller', __name__)
+data_manager = DataManager()
+
+@amenity_controller.route('/amenities', method=['POST'])
+def post_amenity():
+    data = request.get_json()
+    amenity = Amenities(name=data['name'], description=data['description'])
+    data_manager.save(amenity)
+    return jsonify(amenity.__dict__), 201
+
+@amenity_controller.route('/amenities', methods=['GET'])
+def get_amenities():
+    users = data_manager.get_all('Amenities')
+    return jsonify(users), 200
+
+@amenity_controller.route('/amenities/<amenity.id>', methods=['GET'])
+def get_amenity(amenity_id):
+    amenity = data_manager.get(entity_id=amenity_id, entity_type= 'Amenities')
+    if amenity is None:
+        return jsonify({"error": "Amenity not found"}), 404
+    return jsonify(amenity), 200
+
+@amenity_controller.route('/amenities/<amenity.id>', methods=['PUT'])
+def update_amenity(amenity_id):
+    data = request.get_json()
+    existing_amenity = data_manager.get(entity_id=amenity_id, entity_type='Amenities')
+    if existing_amenity is None:
+        return jsonify({"error": "Amenity is not found"}), 404
+    
+    updated_name = data.get('name', existing_amenity.get('name'))
+    update_description = data.get('description', existing_amenity.get('description'))
+    
+    updated_amenity = Amenities(name=updated_name, description=update_description)
+    updated_amenity.id = amenity_id
+    data_manager.update(update_amenity)
+    return jsonify(update_amenity.__dict__), 200
+
+@amenity_controller.route('/amenities/<amenity_id>', method=['DELETE'])
+def delete_amenity(amenity_id):
+    existing_amenity = data_manager.get(entity_id=amenity_id, entity_type='Amenities')
+    if existing_amenity is None:
+        return jsonify({"error": "Amenity is not found"}), 404
+    data_manager.delete(entity_id=amenity_id, entity_type='Amenities')
+    return jsonify({'message': 'Amenity deleted'}), 204      
