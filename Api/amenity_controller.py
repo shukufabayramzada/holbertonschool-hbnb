@@ -43,6 +43,6 @@ def update_amenity(amenity_id):
 def delete_amenity(amenity_id):
     existing_amenity = data_manager.get(entity_id=amenity_id, entity_type='Amenities')
     if existing_amenity is None:
-        return jsonify({"error": "Amenity is not found"}), 404
+        return jsonify({"error": "Amenity is not found at all"}), 404
     data_manager.delete(entity_id=amenity_id, entity_type='Amenities')
     return jsonify({'message': 'Amenity deleted'}), 204      
