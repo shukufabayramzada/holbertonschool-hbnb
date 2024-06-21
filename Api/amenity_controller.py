@@ -21,7 +21,7 @@ def get_amenities():
 def get_amenity(amenity_id):
     amenity = data_manager.get(entity_id=amenity_id, entity_type= 'Amenities')
     if amenity is None:
-        return jsonify({"error": "Amenity not found"}), 404
+        return jsonify({"error": "Amenity id not found"}), 404
     return jsonify(amenity), 200
 
 @amenity_controller.route('/amenities/<amenity_id>', methods=['PUT'])
