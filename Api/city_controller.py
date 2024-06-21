@@ -5,7 +5,7 @@ from Model.city import City
 city_control = Flask(__name__)
 data_manager = DataManager()
 
-@city_control.route('/city', method=['POST'])
+@city_control.route('/city', methods=['POST'])
 def post_city():
     data = request.get_json()
     city = City(data['id'], data['name'], data['description'])
@@ -15,7 +15,7 @@ def post_city():
     print(city)
     return jsonify(city.__dict__), 201
 
-@city_control.route('/city/<city_id>', method=['GET'])
+@city_control.route('/city/<city_id>', methods=['GET'])
 def get_city(city_id):
     city = data_manager.get(entity_id=city_id, entity_type= 'City')
     if city is None:
