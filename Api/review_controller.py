@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from Model.reviews import Reviews  # from Main Model module
+from Model.review import Reviews  # from Main Model module
 from Persistence.data_manager import DataManager
 
 
