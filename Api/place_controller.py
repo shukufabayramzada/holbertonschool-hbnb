@@ -65,10 +65,13 @@ def get_place(place_id):
 @place_controller.route('/places/<place_id>', methods=['PUT'])
 def update_place(place_id):
     data = request.get_json()
-    place = data_manager.get(entity_id=place_id, entity_type='Place')
+    place_data = data_manager.get(entity_id=place_id, entity_type='Place')
     
-    if place is None:
+    if place_data is None:
         return jsonify({"error": "Place not found"}), 404
+    
+    # Convert dictionary back to Place object
+    place = Place(**place_data)
     
     place.id = data.get('id', place.id)
     place.created_at = data.get('created_at', place.created_at)

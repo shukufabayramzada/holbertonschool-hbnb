@@ -33,22 +33,38 @@
             "amenities": [],
             "reviews": []
         },
-        "be6d8f86-4eec-4d47-a31f-c61e89ef1937": {
-            "id": "be6d8f86-4eec-4d47-a31f-c61e89ef1937",
-            "created_at": "2024-06-22 19:22:05.619997",
-            "updated_at": "2024-06-22 19:22:05.619997",
-            "name": "Sample Place",
-            "description": "Sample description",
-            "address": "123 Sample St",
-            "latitude": 123.456,
-            "longitude": 456.789,
-            "host": "Sample Host",
-            "number_of_rooms": 3,
-            "bath_rooms": 2,
-            "price_per_night": 100.0,
-            "max_guests": 5,
+        "4a580378-5273-4f01-b34d-5c5d4a6b929e": {
+            "id": "4a580378-5273-4f01-b34d-5c5d4a6b929e",
+            "created_at": "2024-06-22 21:21:49.425941",
+            "updated_at": "2024-06-22 21:21:49.425941",
+            "name": "Cozy Apartment",
+            "description": "A comfortable apartment in the heart of the city",
+            "address": "123 Main St",
+            "latitude": 40.7128,
+            "longitude": -74.006,
+            "host": "John Doe",
+            "number_of_rooms": 2,
+            "bath_rooms": 1,
+            "price_per_night": 100,
+            "max_guests": 4,
             "amenities": [],
             "reviews": []
+        }
+    },
+    "Country": {
+        "834ba953-d828-4811-9ff4-af57df78b848": {
+            "id": "834ba953-d828-4811-9ff4-af57df78b848",
+            "created_at": "2024-06-22 21:12:04.335643",
+            "updated_at": "2024-06-22 21:12:04.335643",
+            "name": "Sample Country",
+            "country_id": "1"
+        },
+        "f2fc9f78-4890-415e-89ff-9974edb61b32": {
+            "id": "f2fc9f78-4890-415e-89ff-9974edb61b32",
+            "created_at": "2024-06-22 21:17:47.601433",
+            "updated_at": "2024-06-22 21:17:47.601433",
+            "name": "Sample Country",
+            "country_id": "1"
         }
     }
 }

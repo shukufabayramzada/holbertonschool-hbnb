@@ -8,17 +8,22 @@ data_manager = DataManager()
 @country_controller.route('/country', methods=['POST'])
 def post_country():
     data = request.get_json()
-    country_id = data.get('coutry_id')
-    name = data.get('name')
-    country = Country(country_id=country_id, name=name)
-    # save the country to the database
+    self_id = data.get('id')
+    country_name = data.get('name')
+    country_id = data.get('country_id')
+    country = Country(self_id, country_name, country_id)
+    
     data_manager.save(country)
-    # print country for now
-    print(country)
-    return jsonify(country.__dict__), 201 
+    return jsonify(country.__dict__), 201
 
-
-@country_controller.route('/countries/<country_id>', methods=['GET'])
+@country_controller.route('/country/<country_id>', methods=['GET'])
 def get_country(country_id):
-    country = data_manager.get(entity_id=country_id, entity_type='Country')
-    return jsonify(country.__dict__), 200
+    country_data = data_manager.get(entity_id=country_id, entity_type='country')
+    if country_data is None:
+        return jsonify({"error": "country not found"}), 404
+    
+    # Check if country_data is a dictionary or an instance of country
+    if isinstance(country_data, dict):
+        return jsonify(country_data), 200
+    else:
+        return jsonify(country_data.__dict__), 200
