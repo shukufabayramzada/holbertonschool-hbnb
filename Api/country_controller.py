@@ -1,14 +1,16 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Blueprint
 from Persistence.data_manager import DataManager
 from Model.country import Country
 
-app = Flask(__name__)
+country_controller = Blueprint('country_controller', __name__)
 data_manager = DataManager()
 
-@app.route('/country', methods=['POST'])
+@country_controller.route('/country', methods=['POST'])
 def post_country():
     data = request.get_json()
-    country = Country(data['id'], data['name'], data['description'])
+    country_id = data.get('coutry_id')
+    name = data.get('name')
+    country = Country(country_id=country_id, name=name)
     # save the country to the database
     data_manager.save(country)
     # print country for now
@@ -16,7 +18,7 @@ def post_country():
     return jsonify(country.__dict__), 201 
 
 
-@app.route('/countries/<country_id>', methods=['GET'])
+@country_controller.route('/countries/<country_id>', methods=['GET'])
 def get_country(country_id):
     country = data_manager.get(entity_id=country_id, entity_type='Country')
     return jsonify(country.__dict__), 200
