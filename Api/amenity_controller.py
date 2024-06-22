@@ -39,7 +39,7 @@ def update_amenity(amenity_id):
     data_manager.update(updated_amenity)
     return jsonify(update_amenity.__dict__), 200
 
-@amenity_controller.route('/amenities/<amenity_id>', method=['DELETE'])
+@amenity_controller.route('/amenities/<amenity_id>', methods=['DELETE'])
 def delete_amenity(amenity_id):
     existing_amenity = data_manager.get(entity_id=amenity_id, entity_type='Amenities')
     if existing_amenity is None:
