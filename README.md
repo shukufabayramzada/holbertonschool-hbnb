@@ -11,7 +11,8 @@ HBnB Evolution aims to replicate the functionality of AirBnB, allowing users to 
 
 ### Sketching with UML:
 Start by sketching out the application's backbone using UML (Unified Modeling Language) to create a blueprint for how our classes and components will interact. This step is crucial for visualizing the structure and relationships between different parts of our application.
-##Our UML diagram
+
+## Our UML diagram
   [UML diagram](https://lucid.app/lucidchart/b0c8979c-33fd-4881-91bd-46c56fea7709/edit?viewport_loc=-1692%2C1310%2C4348%2C1970%2C0_0&invitationId=inv_538f1d49-4af1-4f3e-9614-af9b030738a7)
 
 ### Testing Our Logic:
