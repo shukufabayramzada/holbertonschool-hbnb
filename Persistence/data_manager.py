@@ -47,6 +47,7 @@ class DataManager(IPersistenceManager):
         data = self._load_data()
         entity_id = getattr(entity, "id")
         entity_type = type(entity).__name__
+        print(entity.__dict__)
         if entity_type in data and str(entity_id) in data[entity_type]:
             data[entity_type][entity_id] = entity.__dict__
             self._write_data(data)

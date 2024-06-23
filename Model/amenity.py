@@ -2,9 +2,17 @@
 from Model.baseclass import BaseClass
 
 class Amenities(BaseClass):
-    
-    def __init__(self, name, description, id, created_at, updated_at):
-        super().__init__()
+    def __init__(self, name, description, id=None, created_at=None, updated_at=None):
+        if id:
+            self.id = id
+        else:
+            super().__init__()  # Generate new UUID only if ID is not provided
+        
+        if created_at:
+            self.created_at = created_at
+        if updated_at:
+            self.updated_at = updated_at
+            
         self.name = name
         self.description = description
     

@@ -53,6 +53,7 @@ def update_amenity(amenity_id):
     if existing_amenity is None:
         return jsonify({"error": "Amenity is not found"}), 404
     
+    print("helo")
     updated_data = {
         'id': amenity_id,
         'created_at': existing_amenity['created_at'],
