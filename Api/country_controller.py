@@ -18,7 +18,7 @@ def post_country():
 
 @country_controller.route('/country/<country_id>', methods=['GET'])
 def get_country(country_id):
-    country_data = data_manager.get(entity_id=country_id, entity_type='country')
+    country_data = data_manager.get(entity_id=country_id, entity_type='Country')
     if country_data is None:
         return jsonify({"error": "country not found"}), 404
     

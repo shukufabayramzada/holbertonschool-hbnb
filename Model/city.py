@@ -16,7 +16,22 @@ class City(BaseClass):
         self.name = name
         self.country_id = country_id
     
+    @staticmethod
+    def get_all_cities():
+        data_manager = DataManager()
+        cities_data = data_manager.get_all('City')
+        cities = [City(**data) for data in cities_data]
+        return cities
+
+    @staticmethod
+    def get_city_by_id(city_id):
+        data_manager = DataManager()
+        city_data = data_manager.get(city_id, 'City')
+        if city_data:
+            return City(**city_data)
+        return None
+    
     def country_id_check(self, country_id):
         if country_id.isnumeric():
             return True
-        raise ValueError("Area code must be in numbers")
+        raise ValueError("Country ID must be numeric")
