@@ -94,15 +94,15 @@ Places are associated with cities, and each city belongs to a country. This hier
 
 - Comprehensive testing is conducted using tools such as `curl` and HTTP methods (`PUT`, `GET`, `POST`, `DELETE`) to verify API functionality and behavior.
   
-- Unit testing with `unittest` ensures individual components of the application function correctly, maintaining reliability and stability throughout development.
+- Unit testing with `unittest` ensures individual components of the application like models function correctly, maintaining reliability and stability throughout development.
 
 ## Team 👥
 
-- **Members:**
-- Shukufa Bayramzada (https://github.com/shukufabayramzada)
-- Simara Rustam (https://github.com/simararustam)
+  **Members:**
+[Shukufa Bayramzada](https://github.com/shukufabayramzada)
+[Simara Rustam](https://github.com/simararustam)
   
-- **Collaboration:**
+  **Collaboration:**
   Our team works collaboratively to design, develop, and test the HBnB Evolution Project, ensuring a cohesive and effective implementation.
 
 ## Data Storage 🗄️
@@ -112,6 +112,31 @@ Places are associated with cities, and each city belongs to a country. This hier
 
 - **Storage Format:**
   Utilizes text, JSON, or XML files to store application data during early development stages. Future iterations will incorporate database solutions for enhanced scalability and performance.
+
+## Contributing 🤝
+
+We welcome contributions to the HBnB Evolution Project! To contribute, follow these steps:
+
+1. **Clone the repository:**
+`git clone https://github.com/shukufabayramzada/holbertonschool-hbnb.git`
+`cd holbertonschool-hbnb`
+
+2. **Create a new branch:**
+`git checkout -b feature/your-feature-name`
+
+3. **Make your changes and commit:**
+`git add .`
+`git commit -m "Your commit message here"`
+
+4. **Push to your branch:**
+`git push origin feature/your-feature-name`
+
+5. **Submit a pull request:** 
+Go to the repository on GitHub and submit a pull request from your branch to `main`. Provide a clear description of your changes, why they are needed, and any considerations for reviewers.
+
+6. **Discuss and iterate:** 
+Participate in discussions and address any feedback or changes requested by the maintainers. Once approved, your pull request will be merged, and your contributions 
+will be part of HBnB Evolution!
 
 ## Requirements 📋
 
