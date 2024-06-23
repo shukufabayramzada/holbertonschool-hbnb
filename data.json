@@ -82,5 +82,18 @@
             "name": "Pool",
             "description": "Swimming Pool"
         }
+    },
+    "User": {
+        "d23b6754-32bf-448f-9ad2-1bc435a59025": {
+            "id": "d23b6754-32bf-448f-9ad2-1bc435a59025",
+            "created_at": "2024-06-23 16:04:53.040209",
+            "updated_at": "2024-06-23 16:04:53.040209",
+            "email": "updated.email@example.com",
+            "first_name": "Updated First Name",
+            "last_name": "Updated Last Name",
+            "host_id": null,
+            "place_id": null,
+            "reviews": []
+        }
     }
 }

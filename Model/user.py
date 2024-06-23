@@ -6,8 +6,16 @@ class User(BaseClass):
     
     users = []
     
-    def __init__(self, id, email, first_name, last_name, created_at, updated_at, host_id, place_id, review):
-        super().__init__()
+    def __init__(self, email, first_name, last_name, host_id, place_id, reviews, created_at=None, updated_at=None, id=None):
+        if id:
+            self.id = id
+        else:
+            super().__init__()  # Generate new UUID only if ID is not provided
+        
+        if created_at:
+            self.created_at = created_at
+        if updated_at:
+            self.updated_at = updated_at
         
         if not self.is_valid_email(email):
             raise ValueError("Invalid email address")
@@ -20,7 +28,7 @@ class User(BaseClass):
         self.last_name = last_name
         self.host_id = host_id
         self.place_id = place_id
-        self.review = review
+        self.reviews = []
         
         User.users.append(self)
         
@@ -42,7 +50,7 @@ class User(BaseClass):
     def not_own_review(self, host_id, place_id, review):
         self.host_id = host_id
         self.place_id = place_id
-        self.review = review
+        self.reviews = []
         
         if host_id == place_id:
             raise ValueError("Owners can`t review their own places")

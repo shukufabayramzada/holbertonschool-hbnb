@@ -10,9 +10,16 @@ data_manager = DataManager()
 def post_user():
     """Creates new user"""
     data = request.get_json()
-    email = data.get('email')
+    id = data.get('id')
+    created_at = data.get('created_at')
+    updated_at = data.get('updated_at')
     first_name = data.get('first_name')
+    email = data.get('email')
     last_name = data.get('last_name')
+    host_id = data.get('host_id')
+    place_id = data.get('place_id')
+    reviews = data.get('reviews')
+    
 
     if not email or not first_name or not last_name:
         return jsonify({'error': 'Missing required fields'}), 400
@@ -20,54 +27,72 @@ def post_user():
     if '@' not in email:  # Simple email validation
         return jsonify({'error': 'Invalid email format'}), 400
 
-    if User.email_exists(email):
+    if User.email_check(email):
         return jsonify({'error': 'Email already exists'}), 409
 
-    user = User(email=email, first_name=first_name, last_name=last_name, created_at=datetime.utcnow(), updated_at=datetime.utcnow())
+    user = User(
+        id=id,
+        created_at=created_at,
+        updated_at=updated_at,
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        host_id=host_id,
+        place_id=place_id,
+        reviews=reviews       
+    )
     data_manager.save(user)
-    return jsonify(user.to_dict()), 201
+    return jsonify(user.__dict__), 201
 
 @user_controller.route('/users', methods=['GET'])
 def get_users():
-    """Gets all users list"""
     users = data_manager.get_all('User')
-    return jsonify([user.to_dict() for user in users]), 200
+    return jsonify(users), 200
 
 @user_controller.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
-    """Gets a specific user"""
-    user = data_manager.get(user_id, 'User')
-    if not user:
+    user_data = data_manager.get(user_id, 'User')
+    if user_data is None:
         return jsonify({'error': 'User not found'}), 404
-    return jsonify(user.to_dict()), 200
+    
+    # Check if user_data is a dictionary or an instance of User
+    if isinstance(user_data, dict):
+        return jsonify(user_data), 200
+    else:
+        return jsonify(user_data.__dict__), 200
 
 @user_controller.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
     """Update user by id"""
     data = request.get_json()
 
-    # Load existing user data
     existing_user_data = data_manager.get(user_id, 'User')
     if not existing_user_data:
         return jsonify({'error': 'User not found'}), 404
 
-    # Check if email is provided and validate it
     email = data.get('email')
     if email:
         if '@' not in email: 
             return jsonify({'error': 'Invalid email format'}), 400
-        if email != existing_user_data.email and User.email_exists(email):
+        if email != existing_user_data['email'] and User.email_check(email):
             return jsonify({'error': 'Email already exists'}), 409
+        
+    updated_data = {
+        'id': user_id,
+        'created_at': existing_user_data['created_at'],
+        'updated_at': data.get('updated_at', existing_user_data['updated_at']),
+        'first_name': data.get('first_name', existing_user_data['first_name']),
+        'last_name': data.get('last_name', existing_user_data['last_name']),
+        'email': email or existing_user_data['email'],
+        'host_id': data.get('host_id', existing_user_data['host_id']),
+        'place_id': data.get('place_id', existing_user_data['place_id']),
+        'reviews': data.get('reviews', existing_user_data['reviews'])
+    }
 
-    # Update user data
-    existing_user_data.email = email or existing_user_data.email
-    existing_user_data.first_name = data.get('first_name', existing_user_data.first_name)
-    existing_user_data.last_name = data.get('last_name', existing_user_data.last_name)
-    existing_user_data.updated_at = datetime.u()
+    updated_user = User(**updated_data)
+    data_manager.update(updated_user)
 
-    data_manager.update(existing_user_data)
-
-    return jsonify(existing_user_data.to_dict()), 200
+    return jsonify(updated_user.__dict__), 200
 
 @user_controller.route('/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
