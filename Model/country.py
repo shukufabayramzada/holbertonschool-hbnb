@@ -1,17 +1,16 @@
 from Model.baseclass import BaseClass
 from Model.city import City
-from Model.country import Country
 from Persistence.data_manager import DataManager
 
 class Country(BaseClass):
-    def __init__(self, id, name, country_id):
+    def __init__(self, id=None, name=None, country_code=None):
         if id:
             self.id = id
         else:
             super().__init__()
 
         self.name = name
-        self.country_id = country_id
+        self.country_code = country_code
     
     @staticmethod
     def get_all_countries():

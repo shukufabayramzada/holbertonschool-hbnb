@@ -1,4 +1,5 @@
 from Model.baseclass import BaseClass
+from Persistence.data_manager import DataManager
 
 class City(BaseClass):
     
