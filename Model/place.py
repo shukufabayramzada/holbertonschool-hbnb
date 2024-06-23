@@ -2,8 +2,17 @@ from Model.baseclass import BaseClass
 
 
 class Place(BaseClass):
-    def __init__(self, id, created_at, updated_at, name, description, address, latitude, longitude, host, number_of_rooms, bath_rooms, price_per_night, max_guests, amenities, reviews):
-        super().__init__()
+    def __init__(self, name, description, address, latitude, longitude, host, number_of_rooms, bath_rooms, price_per_night, max_guests, amenities, reviews, id=None, created_at=None, updated_at=None):
+        if id:
+            self.id = id
+        else:
+            super().__init__()
+        
+        if created_at:
+            self.created_at = created_at
+        if updated_at:
+            self.updated_at = updated_at
+        
         self.name = name
         self.description = description
         self.address = address

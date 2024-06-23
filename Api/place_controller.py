@@ -65,33 +65,30 @@ def get_place(place_id):
 @place_controller.route('/places/<place_id>', methods=['PUT'])
 def update_place(place_id):
     data = request.get_json()
-    place_data = data_manager.get(entity_id=place_id, entity_type='Place')
+    existing_place = data_manager.get(entity_id=place_id, entity_type='Place')
+    if existing_place is None:
+        return jsonify({"error": "Place is not found"}), 404
     
-    if place_data is None:
-        return jsonify({"error": "Place not found"}), 404
-    
-    # Convert dictionary back to Place object
-    place = Place(**place_data)
-    
-    place.id = data.get('id', place.id)
-    place.created_at = data.get('created_at', place.created_at)
-    place.updated_at = data.get('updated_at', place.updated_at)
-    place.description = data.get('description', place.description)
-    place.address = data.get('address', place.address)
-    place.latitude = data.get('latitude', place.latitude)
-    place.longitude = data.get('longitude', place.longitude)
-    place.host = data.get('host', place.host)
-    place.number_of_rooms = data.get('number_of_rooms', place.number_of_rooms)
-    place.bath_rooms = data.get('bath_rooms', place.bath_rooms)
-    place.price_per_night = data.get('price_per_night', place.price_per_night)
-    place.max_guests = data.get('max_guests', place.max_guests)
-    place.amenities = data.get('amenities', place.amenities)
-    place.reviews = data.get('reviews', place.reviews)
-    place.name = data.get('name', place.name)
-    
-    # Save the updated place using your DataManager
-    data_manager.update(place)
-    return jsonify(place.__dict__), 200
+    updated_data = {
+        'id': place_id,
+        'created_at': existing_place['created_at'],
+        'updated_at': data.get('updated_at', existing_place['updated_at']),
+        'description': data.get('description', existing_place['description']),
+        'name': data.get('name', existing_place['name']),
+        'address': data.get('adress', existing_place['address']),
+        'latitude': data.get('latitude', existing_place['latitude']),
+        'longitude': data.get('longitude', existing_place['longitude']),
+        'host': data.get('host', existing_place['host']),
+        'number_of_rooms': data.get('number_of_rooms', existing_place['number_of_rooms']),
+        'bath_rooms': data.get('bath_rooms', existing_place['bath_rooms']),
+        'price_per_night': data.get('price_per_night', existing_place['price_per_night']),
+        'max_guests': data.get('max_guests', existing_place['max_guests']),
+        'amenities': data.get('amenities', existing_place['amenities']),
+        'reviews': data.get('reviews', existing_place['reviews'])
+    }
+    updated_place = Place(**updated_data)
+    data_manager.update(updated_place)
+    return jsonify(updated_place.__dict__), 200
 
 @place_controller.route('/places/<place_id>', methods=['DELETE'])
 def delete_place(place_id):
