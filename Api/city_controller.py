@@ -8,12 +8,19 @@ data_manager = DataManager()
 @city_control.route('/city', methods=['POST'])
 def post_city():
     data = request.get_json()
-    city_id = data.get('id')
+    id = data.get('id')
     created_at = data.get('created_at')
     updated_at = data.get('updated_at')
     city_name = data.get('name')
     country_id = data.get('country_id')
-    city = City(city_id, created_at, updated_at, city_name, country_id)
+
+    city = City(
+        id=id,
+        created_at=created_at,
+        updated_at=updated_at,
+        name=city_name,
+        country_id=country_id
+    )
     
     data_manager.save(city)
     return jsonify(city.__dict__), 201

@@ -13,6 +13,13 @@
             "updated_at": "2024-06-22 18:55:05.191062",
             "name": "New York",
             "country_id": "2"
+        },
+        "dbda76cf-662e-48f6-8a54-5e030dcb602f": {
+            "id": "dbda76cf-662e-48f6-8a54-5e030dcb602f",
+            "created_at": "2024-06-22T00:00:00Z",
+            "updated_at": "2024-06-22T00:00:00Z",
+            "name": "moskva",
+            "country_id": "44"
         }
     },
     "Place": {
@@ -73,7 +80,7 @@
             "created_at": "2024-06-22 21:53:41.613947",
             "updated_at": "2024-06-22 21:53:41.613947",
             "name": "Updated Pool",
-            "description": "Heated Swimming Pool"
+            "description": "Heated Swimming Pool-----simosh"
         },
         "449f495d-6613-40d3-959c-485293e090d7": {
             "id": "449f495d-6613-40d3-959c-485293e090d7",

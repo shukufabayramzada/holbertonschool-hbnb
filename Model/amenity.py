@@ -6,7 +6,7 @@ class Amenities(BaseClass):
         if id:
             self.id = id
         else:
-            super().__init__()  # Generate new UUID only if ID is not provided
+            super().__init__()
         
         if created_at:
             self.created_at = created_at

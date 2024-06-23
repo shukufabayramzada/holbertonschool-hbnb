@@ -6,7 +6,7 @@ from Model.country import Country
 
 
 country_city_controller = Blueprint('country_city_controller', __name__)
-data = DataManager()
+data_manager = DataManager()
 
 
 @country_city_controller.route('/countries', methods=['GET'])
@@ -63,15 +63,20 @@ def get_city(city_id):
 @country_city_controller.route('/cities/<city_id>', methods=['PUT'])
 def update_city(city_id):
     data = request.get_json()
-    now = datetime()
-    city = City.get_city_by_id(city_id)
-    if city is None:
-        return jsonify({'error': 'City not found'}), 404
-    city.name = data.get('name', city.name)
-    city.country_code = data.get('country_code', city.country_code)
-    city.updated_at = now
-    city.save()
-    return jsonify(city.__dict__), 200
+    existing_city = data_manager.get(entity_id=city_id, entity_type='City')
+    if existing_city is None:
+        return jsonify({"error": "City is not found"}), 404
+    
+    updated_city = {
+        'id': city_id,
+        'created_at': existing_city['created_at'],
+        'updated_at': data.get('updated_at', existing_city['updated_at']),
+        'country_id': data.get('country_id', existing_city['country_id']),
+        'name': data.get('name', existing_city['name'])
+    }
+    updated_city = City(**updated_city)
+    data_manager.update(updated_city)
+    return jsonify(updated_city.__dict__), 200
 
 
 @country_city_controller.route('/cities/<city_id>', methods=['DELETE'])
